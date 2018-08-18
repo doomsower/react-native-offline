@@ -55,7 +55,7 @@ function* netInfoChangeSaga(
   pingServerUrl: string,
   withExtraHeadRequest: boolean,
 ): Generator<*, *, *> {
-  const chan = yield call(createNetInfoConnectionChangeChannel);
+  const chan = createNetInfoConnectionChangeChannel();
   try {
     while (true) {
       const isConnected = yield take(chan);
@@ -83,7 +83,7 @@ function* connectionIntervalSaga(
   pingServerUrl?: string,
   interval: number,
 ): Generator<*, *, *> {
-  const chan = yield call(createIntervalChannel, interval);
+  const chan = createIntervalChannel(interval);
   try {
     while (true) {
       yield take(chan);
